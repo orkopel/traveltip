@@ -3,19 +3,14 @@ import { mapService } from './map.service.js'
 
 const STORAGE_KEY = 'locDB'
 
-
+var gId = 0;
 export const locService = {
     getLocs,
     saveLocation
 }
 
-const gLocs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-]
-
-
-
+const gLocs = storageService.load(STORAGE_KEY) || [];
+console.log(gLocs);
 
 
 
@@ -28,8 +23,21 @@ function getLocs() {
 }
 
 function saveLocation(pos) {
-    console.log('pos', pos)
-    gLocs.push(pos)
+    console.log(pos);
+    var newLocation = _createLocation(pos.lat, pos.lng);
+    gLocs.push(newLocation)
     storageService.save(STORAGE_KEY, gLocs)
 }
 
+function _createLocation(lat, lng) {
+    var location = {
+        id: gId++,
+        name: prompt('location name'),
+        lat: lat,
+        lng: lng,
+        weather: 'not yet',
+        createdAt: Date.now(),
+        updatedAt: 'not now',
+    }
+    return location;
+}
