@@ -1,7 +1,10 @@
 import { storageService } from './storage.service.js'
+import { mapService } from './services/map.service.js'
+
 
 export const locService = {
-    getLocs
+    getLocs,
+    
 }
 
 
@@ -19,15 +22,19 @@ function getLocs() {
     });
 }
 
-// function addLocation(loc) {
-//     const location = {
-//         id,
-//         name,
-//         lat,
-//         lng,
-//         weather,
-//         createdAt,
-//         updatedAt,  
-//     }
 
-// }
+mapService.getLocation()
+console.log(mapService.getLocation());
+function addLocation(loc,name) {
+
+    const location = {
+        id,
+        name,
+        lat: loc.lat,
+        lng: loc.lng,
+        weather,
+        createdAt,
+        updatedAt,  
+    }
+
+}

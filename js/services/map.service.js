@@ -3,7 +3,8 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getLocation
 }
 
 var gMap;
@@ -33,8 +34,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                     lng:mapsMouseEvent.latLng.lng()
                 }
                 addMarker(loc)
-                renderLocationtoTable(loc)
-              console.log()
+                getLocation(loc)
             });
 
             console.log(gMap);
@@ -69,6 +69,11 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function getLocation(loc) {
+    console.log(loc);
+    return loc
 }
 
 
