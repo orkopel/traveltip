@@ -8,6 +8,7 @@ export const locService = {
     getLocs,
     saveLocation,
     getgLocations,
+    deleteLocation,
 }
 
 const gLocs = storageService.load(STORAGE_KEY) || [];
@@ -55,3 +56,13 @@ function createLocation(lat, lng) {
     return location;
 }
 
+function deleteLocation(id) {
+    var locationIdx = gLocs.findIndex((locs) => {
+        return locs.id === id;
+    })
+    const marker = gLocs[locationIdx]
+    gLocs.splice(locationIdx,1)
+    console.log(locationIdx)
+    storageService.save(STORAGE_KEY, gLocs)
+
+}
