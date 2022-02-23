@@ -1,5 +1,5 @@
 import { storageService } from './storage.service.js'
-import { mapService } from './services/map.service.js'
+import { mapService } from './map.service.js'
 
 
 export const locService = {
@@ -23,18 +23,16 @@ function getLocs() {
 }
 
 
-mapService.getLocation()
-console.log(mapService.getLocation());
-function addLocation(loc,name) {
+// function createLocation(loc) {
+//     mapService.getLocation(loc)
+//     const location = {
+//         id,
+//         name,
+//         lat: loc.lat,
+//         lng: loc.lng,
+//         weather,
+//         createdAt,
+//         updatedAt,  
+//     }
 
-    const location = {
-        id,
-        name,
-        lat: loc.lat,
-        lng: loc.lng,
-        weather,
-        createdAt,
-        updatedAt,  
-    }
-
-}
+// }

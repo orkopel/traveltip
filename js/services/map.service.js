@@ -1,3 +1,4 @@
+import { storageService } from './storage.service.js'
 
 
 export const mapService = {
@@ -6,6 +7,8 @@ export const mapService = {
     panTo,
     getLocation
 }
+
+const STORAGE_KEY = 'locDB'
 
 var gMap;
 
@@ -42,11 +45,27 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 }
 
 function addMarker(loc) {
+    const contentString = 
+    `<div>
+    <button onclick="saveLocation()">Save Location</button>
+    </div>`
+ 
+    const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
         title: 'Hello World!'
     });
+    marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          gMap,
+          shouldFocus: false,
+        });
+      });
+
     console.log('marker', marker.position);
     return marker;
 }
@@ -74,6 +93,12 @@ function _connectGoogleApi() {
 function getLocation(loc) {
     console.log(loc);
     return loc
+}
+
+function saveLocation() {
+    var location = getLocation(loc)
+    storageService.save(STORAGE_KEY, location)
+
 }
 
 
