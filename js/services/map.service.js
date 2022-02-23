@@ -33,6 +33,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                     lng:mapsMouseEvent.latLng.lng()
                 }
                 addMarker(loc)
+                renderLocationtoTable(loc)
               console.log()
             });
 
@@ -70,4 +71,4 @@ function _connectGoogleApi() {
     })
 }
 
- 
+
