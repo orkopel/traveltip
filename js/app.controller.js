@@ -59,7 +59,23 @@ function onPanTo() {
 
 function onSaveLocation(lng, lat) {
 
-    var elLng = document.querySelector('.locations-table')
-    elLng.innerHTML += `<li>Lng: ${lng} Lat: ${lat}</li>`
+
     locService.saveLocation({ lng, lat })
+    renderLocations()
 }
+
+function renderLocations() {
+    var locations = locService.getgLocations();
+
+    var locationsToHTML = '';
+    locationsToHTML = locations.map((location) => {
+        return locationsToHTML = `<li id="${location.id}">Name: ${location.name} , Lat: ${location.lat}, Lng: ${location.lng} </li> <button>Pan Location</button><button>Delete Location</button>`;
+    })
+    console.log(locations)
+    document.querySelector('.locations-table').innerHTML = locationsToHTML.join('')
+}
+
+function panLocation() {
+    
+}
+

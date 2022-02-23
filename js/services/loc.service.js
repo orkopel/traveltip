@@ -7,12 +7,15 @@ var gId = 0;
 export const locService = {
     getLocs,
     saveLocation,
-    createLocation
+    getgLocations,
 }
 
 const gLocs = storageService.load(STORAGE_KEY) || [];
-console.log(gLocs);
 
+
+function getgLocations() {
+    return gLocs;
+}
 
 
 function getLocs() {
