@@ -15,26 +15,26 @@ var gMap;
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
     return _connectGoogleApi()
-    .then(() => {
-        console.log('google available');
-        gMap = new google.maps.Map(
-            document.querySelector('#map'), {
-                center: { lat, lng },
-                zoom: 15
-            })
+        .then(() => {
+            console.log('google available');
+            gMap = new google.maps.Map(
+                document.querySelector('#map'), {
+                    center: { lat, lng },
+                    zoom: 15
+                })
             let infoWindow = new google.maps.InfoWindow({
                 content: "Click the map to get Lat/Lng!",
-                position: {lat,lng}
-               
+                position: { lat, lng }
+
             });
             console.log(infoWindow.position);
-            
+
             infoWindow.open(gMap);
             // Configure the click listener.
             gMap.addListener("click", (mapsMouseEvent) => {
                 var loc = {
-                    lat:mapsMouseEvent.latLng.lat(),
-                    lng:mapsMouseEvent.latLng.lng()
+                    lat: mapsMouseEvent.latLng.lat(),
+                    lng: mapsMouseEvent.latLng.lng()
                 }
                 addMarker(loc)
             });
@@ -45,14 +45,14 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 
 function addMarker(loc) {
     console.log(loc);
-    const contentString = 
-    `<div>
+    const contentString =
+        `<div>
     <button onclick="onSaveLocation(${loc.lng}, ${loc.lat})">Save Location</button>
     </div>`
- 
+
     const infowindow = new google.maps.InfoWindow({
         content: contentString,
-      });
+    });
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
@@ -61,11 +61,11 @@ function addMarker(loc) {
     // saveLocation(loc)
     marker.addListener("click", () => {
         infowindow.open({
-          anchor: marker,
-          gMap,
-          shouldFocus: false,
+            anchor: marker,
+            gMap,
+            shouldFocus: false,
         });
-      });
+    });
 
     console.log('marker', marker.position);
     return marker;
@@ -90,7 +90,3 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
-
-
-
-

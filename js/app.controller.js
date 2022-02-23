@@ -21,7 +21,9 @@ function getPosition() {
     console.log('Getting Pos');
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
+        onInit()
     })
+
 }
 
 function onAddMarker() {
@@ -47,7 +49,9 @@ function onGetUserPos() {
         .catch(err => {
             console.log('err!!!', err);
         })
+
 }
+
 function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
@@ -57,6 +61,5 @@ function onSaveLocation(lng, lat) {
 
     var elLng = document.querySelector('.locations-table')
     elLng.innerHTML += `<li>Lng: ${lng} Lat: ${lat}</li>`
-    locService.saveLocation({lng, lat })
+    locService.saveLocation({ lng, lat })
 }
-
