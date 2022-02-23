@@ -4,35 +4,28 @@ import { mapService } from './map.service.js'
 
 export const locService = {
     getLocs,
-    
+    saveLocation
 }
 
-
-
-const locs = [
+const gLocs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
+
+
+
 function getLocs() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(locs);
+            resolve(gLocs);
         }, 2000)
     });
 }
 
+function saveLocation(pos) {
+    console.log('pos', pos)
+    gLocs.push(pos)
+    storageService.save('locations_db', gLocs)
+}
 
-// function createLocation(loc) {
-//     mapService.getLocation(loc)
-//     const location = {
-//         id,
-//         name,
-//         lat: loc.lat,
-//         lng: loc.lng,
-//         weather,
-//         createdAt,
-//         updatedAt,  
-//     }
-
-// }

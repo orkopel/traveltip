@@ -6,6 +6,7 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onSaveLocation = onSaveLocation
 
 function onInit() {
     mapService.initMap()
@@ -51,3 +52,11 @@ function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
 }
+
+function onSaveLocation(lng, lat) {
+
+    var elLng = document.querySelector('.locations-table')
+    elLng.innerHTML += `<li>Lng: ${lng} Lat: ${lat}</li>`
+    locService.saveLocation({lng, lat })
+}
+
