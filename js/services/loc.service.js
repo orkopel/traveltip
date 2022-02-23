@@ -6,7 +6,8 @@ const STORAGE_KEY = 'locDB'
 var gId = 0;
 export const locService = {
     getLocs,
-    saveLocation
+    saveLocation,
+    createLocation
 }
 
 const gLocs = storageService.load(STORAGE_KEY) || [];
@@ -24,14 +25,23 @@ function getLocs() {
 
 function saveLocation(pos) {
     console.log(pos);
-    var newLocation = _createLocation(pos.lat, pos.lng);
+    var newLocation = createLocation(pos.lat, pos.lng);
     gLocs.push(newLocation)
     storageService.save(STORAGE_KEY, gLocs)
 }
 
-function _createLocation(lat, lng) {
+function makeId(length) {
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    for (var i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+    return text
+}
+
+function createLocation(lat, lng) {
     var location = {
-        id: gId++,
+        id: makeId(3),
         name: prompt('location name'),
         lat: lat,
         lng: lng,
@@ -41,3 +51,4 @@ function _createLocation(lat, lng) {
     }
     return location;
 }
+
