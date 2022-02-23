@@ -1,6 +1,8 @@
 import { storageService } from './storage.service.js'
 import { mapService } from './map.service.js'
 
+const STORAGE_KEY = 'locDB'
+
 
 export const locService = {
     getLocs,
@@ -26,6 +28,6 @@ function getLocs() {
 function saveLocation(pos) {
     console.log('pos', pos)
     gLocs.push(pos)
-    storageService.save('locations_db', gLocs)
+    storageService.save(STORAGE_KEY, gLocs)
 }
 
